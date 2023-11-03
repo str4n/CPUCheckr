@@ -38,9 +38,17 @@ public sealed class ProcessorController : BaseController
     }
 
     [HttpPatch("{id:guid}")]
-    public async Task<ActionResult> Update([FromRoute] Guid id,[FromBody] double price)
+    public async Task<ActionResult> Update([FromRoute] Guid id, [FromBody] double price)
     {
         await _processorService.UpdatePriceAsync(id, price);
+
+        return Accepted();
+    }
+
+    [HttpPut("{id:guid}")]
+    public async Task<ActionResult> Update([FromRoute] Guid id, [FromBody] ProcessorDto dto)
+    {
+        await _processorService.UpdateAsync(id, dto);
 
         return Accepted();
     }
