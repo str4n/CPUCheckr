@@ -14,22 +14,34 @@ public sealed class ProcessorController : BaseController
     }
     
     [HttpGet("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ProcessorDto>> Get([FromRoute] Guid id)
         => OkOrNotFound(await _processorService.GetAsync(id));
 
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ICollection<ProcessorDto>>> GetAll()
         => OkOrNotFound(await _processorService.GetAllAsync());
 
     [HttpGet("manufacturer")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<ICollection<ProcessorDto>>> GetAll([FromQuery] string manufacturer)
         => OkOrNotFound(await _processorService.GetAllByManufacturerAsync(manufacturer));
     
     [HttpGet("cores")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<ICollection<ProcessorDto>>> GetAll([FromQuery] int cores)
         => OkOrNotFound(await _processorService.GetAllByCoresAsync(cores));
 
     [HttpPost("create")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult> Add([FromBody] ProcessorDto dto)
     {
         await _processorService.AddAsync(dto);
@@ -38,6 +50,8 @@ public sealed class ProcessorController : BaseController
     }
 
     [HttpPatch("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status202Accepted)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult> Update([FromRoute] Guid id, [FromBody] double price)
     {
         await _processorService.UpdatePriceAsync(id, price);
@@ -46,6 +60,8 @@ public sealed class ProcessorController : BaseController
     }
 
     [HttpPut("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status202Accepted)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult> Update([FromRoute] Guid id, [FromBody] ProcessorDto dto)
     {
         await _processorService.UpdateAsync(id, dto);
@@ -54,6 +70,8 @@ public sealed class ProcessorController : BaseController
     }
 
     [HttpDelete("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult> Delete([FromRoute] Guid id)
     {
         await _processorService.DeleteAsync(id);
