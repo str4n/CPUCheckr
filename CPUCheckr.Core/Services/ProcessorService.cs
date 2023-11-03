@@ -58,7 +58,7 @@ internal sealed class ProcessorService : IProcessorService
             processor.EditModel(dto.Model);
         }
         
-        if (dto.Cores is 0)
+        if (dto.Cores is not 0)
         {
             processor.EditCores(dto.Cores);
         }
@@ -73,7 +73,7 @@ internal sealed class ProcessorService : IProcessorService
             processor.EditSocket(dto.Socket);
         }
 
-        if (dto.Price is 0)
+        if (dto.Price is not 0)
         {
             processor.EditPrice(dto.Price);
         }
