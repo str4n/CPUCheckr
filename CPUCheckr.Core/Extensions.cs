@@ -10,6 +10,8 @@ public static class Extensions
 {
     public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddControllers();
+        
         services.AddScoped<ExceptionMiddleware>();
 
         services.AddMariaDb(configuration);
@@ -20,9 +22,7 @@ public static class Extensions
     public static WebApplication UseCore(this WebApplication app)
     {
         app.UseMiddleware<ExceptionMiddleware>();
-            
-        app.MapGet("/", () => "Hello World!");
-        
+
         app.MapControllers();
 
         return app;
