@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPUCheckr.Api", "CPUCheckr.Api\CPUCheckr.Api.csproj", "{10C9EDD5-FB2C-4BBF-8729-D3555CB8A2D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPUCheckr.Core", "CPUCheckr.Core\CPUCheckr.Core.csproj", "{77B3E16A-8F58-42E0-A89E-1E36101B5E8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10C9EDD5-FB2C-4BBF-8729-D3555CB8A2D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10C9EDD5-FB2C-4BBF-8729-D3555CB8A2D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10C9EDD5-FB2C-4BBF-8729-D3555CB8A2D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10C9EDD5-FB2C-4BBF-8729-D3555CB8A2D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77B3E16A-8F58-42E0-A89E-1E36101B5E8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77B3E16A-8F58-42E0-A89E-1E36101B5E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77B3E16A-8F58-42E0-A89E-1E36101B5E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77B3E16A-8F58-42E0-A89E-1E36101B5E8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

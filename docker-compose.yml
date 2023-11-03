@@ -1,0 +1,11 @@
+version: '3'
+services:
+  mariadb:
+    image: mariadb
+    container_name: CpuDb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
