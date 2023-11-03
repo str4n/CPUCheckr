@@ -18,7 +18,7 @@ internal sealed class ProcessorRepository : IProcessorRepository
         => await _processors.SingleOrDefaultAsync(x => x.Id == id);
 
 
-    public async Task<ICollection<Processor>> GetAllAsync(Guid id)
+    public async Task<ICollection<Processor>> GetAllAsync()
         => await _processors.ToListAsync();
 
     public async Task AddAsync(Processor processor)
