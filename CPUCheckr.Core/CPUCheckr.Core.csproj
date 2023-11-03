@@ -6,11 +6,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="DAL\Repositories\" />
       <Folder Include="Domain\" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Humanizer" Version="2.14.1" />
+      <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     </ItemGroup>
 

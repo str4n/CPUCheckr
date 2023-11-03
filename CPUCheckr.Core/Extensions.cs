@@ -1,4 +1,5 @@
-﻿using CPUCheckr.Core.Exceptions.Middleware;
+﻿using CPUCheckr.Core.DAL;
+using CPUCheckr.Core.Exceptions.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,8 @@ public static class Extensions
     public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<ExceptionMiddleware>();
+
+        services.AddMariaDb(configuration);
 
         return services;
     }
@@ -23,5 +26,14 @@ public static class Extensions
         app.MapControllers();
 
         return app;
+    }
+
+    public static T GetOptions<T>(this IConfiguration configuration, string sectionName) where T : class, new()
+    {
+        var options = new T();
+        var section = configuration.GetSection(sectionName);
+        section.Bind(options);
+
+        return options;
     }
 }

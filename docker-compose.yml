@@ -5,6 +5,7 @@ services:
     container_name: CpuDb
     environment:
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: CpuDb
       MYSQL_USER: admin
       MYSQL_PASSWORD: password
     ports:
