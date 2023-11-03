@@ -44,6 +44,43 @@ internal sealed class ProcessorService : IProcessorService
         await _processorRepository.AddAsync(dto.ToEntity());
     }
 
+    public async Task UpdateAsync(Guid id, ProcessorDto dto)
+    {
+        var processor = await _processorRepository.GetAsync(id);
+
+        if (dto.Manufacturer is not null)
+        {
+            processor.EditManufacturer(dto.Manufacturer);
+        }
+        
+        if (dto.Model is not null)
+        {
+            processor.EditModel(dto.Model);
+        }
+        
+        if (dto.Cores is 0)
+        {
+            processor.EditCores(dto.Cores);
+        }
+        
+        if (dto.ClockRate is not null)
+        {
+            processor.EditClockRate(dto.ClockRate);
+        }
+        
+        if (dto.Socket is not null)
+        {
+            processor.EditSocket(dto.Socket);
+        }
+
+        if (dto.Price is 0)
+        {
+            processor.EditPrice(dto.Price);
+        }
+
+        await _processorRepository.UpdateAsync(processor);
+    }
+
     public async Task UpdatePriceAsync(Guid id, double price)
     {
         var processor = await _processorRepository.GetAsync(id);
