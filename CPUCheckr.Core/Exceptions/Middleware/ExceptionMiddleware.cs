@@ -1,4 +1,5 @@
-﻿using Humanizer;
+﻿using CPUCheckr.Core.Domain.Exceptions;
+using Humanizer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -30,7 +31,7 @@ internal sealed class ExceptionMiddleware : IMiddleware
     {
         var (statusCode, error) = exception switch
         {
-            Exception => (StatusCodes.Status400BadRequest,
+            ApiException => (StatusCodes.Status400BadRequest,
                 new Error(exception.GetType().Name.Underscore().Replace("_exception", string.Empty), exception.Message)),
             _ => (StatusCodes.Status500InternalServerError, new Error("error", "There was an error."))
         };
