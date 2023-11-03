@@ -1,5 +1,6 @@
 ﻿using CPUCheckr.Core.DAL;
 using CPUCheckr.Core.Exceptions.Middleware;
+using CPUCheckr.Core.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,8 @@ public static class Extensions
         services.AddScoped<ExceptionMiddleware>();
 
         services.AddMariaDb(configuration);
+
+        services.AddScoped<IProcessorService, ProcessorService>();
 
         return services;
     }
