@@ -11,13 +11,16 @@ public static class Extensions
 {
     public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddControllers();
-        
         services.AddScoped<ExceptionMiddleware>();
 
         services.AddMariaDb(configuration);
 
         services.AddScoped<IProcessorService, ProcessorService>();
+        
+        services.AddControllers();
+        
+        services.AddSwaggerGen();
+
 
         return services;
     }
@@ -25,6 +28,14 @@ public static class Extensions
     public static WebApplication UseCore(this WebApplication app)
     {
         app.UseMiddleware<ExceptionMiddleware>();
+
+        app.UseHttpsRedirection();
+
+        app.UseSwagger();
+        app.UseSwaggerUI(options =>
+        {
+            options.SwaggerEndpoint("/swagger/v1/swagger.json", "CPU Checkr API");
+        });
 
         app.MapControllers();
 
