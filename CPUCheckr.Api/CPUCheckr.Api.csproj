@@ -6,4 +6,8 @@
         <RootNamespace>CPUCheckr</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\CPUCheckr.Core\CPUCheckr.Core.csproj" />
+    </ItemGroup>
+
 </Project>
