@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CPUCheckr.Core.DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +18,8 @@ internal static class Extensions
 
         services.AddDbContext<CpuCheckrDbContext>(x =>
             x.UseMySql(options.ConnectionString, new MySqlServerVersion(new Version(11, 1))));
+
+        services.AddScoped<IProcessorRepository, ProcessorRepository>();
 
         return services;
     }
