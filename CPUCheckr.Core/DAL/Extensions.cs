@@ -21,6 +21,8 @@ internal static class Extensions
 
         services.AddScoped<IProcessorRepository, ProcessorRepository>();
 
+        services.AddHostedService<DatabaseInitializer>();
+
         return services;
     }
 }
