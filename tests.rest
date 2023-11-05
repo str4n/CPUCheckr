@@ -1,0 +1,58 @@
+@url = http://localhost:5239/api
+@id = 160a5c4b-d3f4-4142-8437-133112375e58
+@id2 = 00000000-0000-0000-0000-000000000001
+@manufacturer = amd
+@cores = 8
+
+GET {{url}}/home
+
+###
+
+GET {{url}}/processor
+
+###
+
+GET {{url}}/processor/manufacturer?manufacturer={{manufacturer}}
+
+###
+
+GET {{url}}/processor/cores?cores={{cores}}
+
+###
+
+POST {{url}}/processor/create
+Content-type: application/json
+
+{
+    "id": "{{id2}}",
+    "manufacturer": "intel",
+    "model": "i5-13600k",
+    "cores": 14,
+    "clockRate": "5.1GHz",
+    "socket": "Socket 1700",
+    "price": 1549
+}
+
+###
+
+GET {{url}}/processor/{{id2}}
+
+###
+
+PATCH {{url}}/processor/{{id2}}?price=1600
+
+
+###
+
+PUT {{url}}/processor/{{id2}}
+Content-Type: application/json
+
+{
+    "cores": 14,
+    "price": 1549,
+    "model": "i5-13600"
+}
+
+###
+
+DELETE {{url}}/processor/{{id2}}
