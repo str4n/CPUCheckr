@@ -31,6 +31,8 @@ internal sealed class ExceptionMiddleware : IMiddleware
     {
         var (statusCode, error) = exception switch
         {
+            ProcessorNotFoundException => (StatusCodes.Status404NotFound,
+                new Error(exception.GetType().Name.Underscore().Replace("_exception", string.Empty), exception.Message)),
             ApiException => (StatusCodes.Status400BadRequest,
                 new Error(exception.GetType().Name.Underscore().Replace("_exception", string.Empty), exception.Message)),
             _ => (StatusCodes.Status500InternalServerError, new Error("error", "There was an error."))

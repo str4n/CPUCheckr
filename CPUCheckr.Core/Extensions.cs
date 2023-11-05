@@ -17,7 +17,10 @@ public static class Extensions
 
         services.AddScoped<IProcessorService, ProcessorService>();
         
-        services.AddControllers();
+        services.AddControllers().AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+        });;
         
         services.AddSwaggerGen();
 

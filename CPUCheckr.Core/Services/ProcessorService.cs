@@ -15,7 +15,16 @@ internal sealed class ProcessorService : IProcessorService
     }
 
     public async Task<ProcessorDto> GetAsync(Guid id)
-        => (await _processorRepository.GetAsync(id)).AsDto();
+    {
+        var processor = await _processorRepository.GetAsync(id);
+
+        if (processor is null)
+        {
+            throw new ProcessorNotFoundException(id);
+        }
+
+        return processor.AsDto();
+    }
 
     public async Task<ICollection<ProcessorDto>> GetAllByManufacturerAsync(string manufacturer)
         => (await _processorRepository.GetAllAsync())

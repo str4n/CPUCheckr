@@ -52,7 +52,7 @@ public sealed class ProcessorController : BaseController
     [HttpPatch("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> Update([FromRoute] Guid id, [FromBody] double price)
+    public async Task<ActionResult> Update([FromRoute] Guid id, [FromQuery] double price)
     {
         await _processorService.UpdatePriceAsync(id, price);
 
