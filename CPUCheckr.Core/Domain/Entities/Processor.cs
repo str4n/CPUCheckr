@@ -14,7 +14,7 @@ internal sealed class Processor
 
     public Processor(Guid id, Manufacturer manufacturer, Model model, Cores cores, ClockRate clockRate, Socket socket, Price price)
     {
-        Id = id == Guid.Empty ? Guid.NewGuid() : id;
+        Id = id;
         Manufacturer = manufacturer;
         Model = model;
         Cores = cores;

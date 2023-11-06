@@ -44,6 +44,11 @@ public sealed class ProcessorController : BaseController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult> Add([FromBody] ProcessorDto dto)
     {
+        if (dto.Id == Guid.Empty)
+        {
+            dto = dto with { Id = Guid.NewGuid() };
+        }
+        
         await _processorService.AddAsync(dto);
 
         return CreatedAtAction(nameof(Get), new { id = dto.Id }, null);
