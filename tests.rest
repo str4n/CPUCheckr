@@ -39,8 +39,12 @@ GET {{url}}/processor/{{id2}}
 
 ###
 
-PATCH {{url}}/processor/{{id2}}?price=1600
+PATCH {{url}}/processor/{{id2}}
+Content-Type: application/json
 
+{
+    "price": 1600
+}
 
 ###
 
