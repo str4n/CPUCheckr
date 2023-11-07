@@ -33,6 +33,15 @@ Content-type: application/json
 
 ###
 
+GET {{url}}/processor
+Content-type: application/json
+
+{
+    "model": "i9-11900k"
+}
+
+###
+
 POST {{url}}/processor/create
 Content-type: application/json
 
