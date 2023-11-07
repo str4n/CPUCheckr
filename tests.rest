@@ -1,22 +1,35 @@
 @url = http://localhost:5239/api
-@id = 160a5c4b-d3f4-4142-8437-133112375e58
-@id2 = 00000000-0000-0000-0000-000000000001
-@manufacturer = amd
-@cores = 8
+@id = 8a2526c4-e6a6-462e-b783-f4a08a1b3bce
 
 GET {{url}}/home
 
 ###
 
 GET {{url}}/processor
+Content-type: application/json
+
+{
+}
 
 ###
 
-GET {{url}}/processor/manufacturer?manufacturer={{manufacturer}}
+GET {{url}}/processor
+Content-type: application/json
+
+{
+    "manufacturer": "intel",
+    "cores": 8
+}
 
 ###
 
-GET {{url}}/processor/cores?cores={{cores}}
+GET {{url}}/processor
+Content-type: application/json
+
+{
+    "manufacturer": "amd",
+    "socket": "Socket AM5"
+}
 
 ###
 
@@ -24,7 +37,6 @@ POST {{url}}/processor/create
 Content-type: application/json
 
 {
-    "id": "{{id2}}",
     "manufacturer": "intel",
     "model": "i5-13600k",
     "cores": 14,
@@ -35,11 +47,11 @@ Content-type: application/json
 
 ###
 
-GET {{url}}/processor/{{id2}}
+GET {{url}}/processor/{{id}}
 
 ###
 
-PATCH {{url}}/processor/{{id2}}
+PATCH {{url}}/processor/{{id}}
 Content-Type: application/json
 
 {
@@ -48,7 +60,7 @@ Content-Type: application/json
 
 ###
 
-PUT {{url}}/processor/{{id2}}
+PUT {{url}}/processor/{{id}}
 Content-Type: application/json
 
 {
@@ -59,4 +71,4 @@ Content-Type: application/json
 
 ###
 
-DELETE {{url}}/processor/{{id2}}
+DELETE {{url}}/processor/{{id}}

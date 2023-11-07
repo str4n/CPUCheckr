@@ -22,33 +22,15 @@ public sealed class ProcessorController : BaseController
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<ICollection<ProcessorDto>>> GetAll()
-        => OkOrNotFound(await _processorService.GetAllAsync());
-
-    [HttpGet("manufacturer")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ICollection<ProcessorDto>>> GetAll([FromQuery] string manufacturer)
-        => OkOrNotFound(await _processorService.GetAllByManufacturerAsync(manufacturer));
-    
-    [HttpGet("cores")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ICollection<ProcessorDto>>> GetAll([FromQuery] int cores)
-        => OkOrNotFound(await _processorService.GetAllByCoresAsync(cores));
+    public async Task<ActionResult<ICollection<ProcessorDto>>> GetAll([FromBody] SortByDto sortBy)
+        => OkOrNotFound(await _processorService.GetAllAsync(sortBy));
 
     [HttpPost("create")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult> Add([FromBody] ProcessorDto dto)
     {
-        if (dto.Id == Guid.Empty)
-        {
-            dto = dto with { Id = Guid.NewGuid() };
-        }
-        
+        dto = dto with { Id = Guid.NewGuid() };
         await _processorService.AddAsync(dto);
 
         return CreatedAtAction(nameof(Get), new { id = dto.Id }, null);

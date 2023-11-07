@@ -26,20 +26,12 @@ internal sealed class ProcessorService : IProcessorService
         return processor.AsDto();
     }
 
-    public async Task<ICollection<ProcessorDto>> GetAllByManufacturerAsync(string manufacturer)
+    public async Task<ICollection<ProcessorDto>> GetAllAsync(SortByDto sortBy)
         => (await _processorRepository.GetAllAsync())
-            .Where(x => x.Manufacturer == manufacturer)
-            .Select(x => x.AsDto())
-            .ToList();
-
-    public async Task<ICollection<ProcessorDto>> GetAllByCoresAsync(int cores)
-        => (await _processorRepository.GetAllAsync())
-            .Where(x => x.Cores == cores)
-            .Select(x => x.AsDto())
-            .ToList();
-
-    public async Task<ICollection<ProcessorDto>> GetAllAsync()
-        => (await _processorRepository.GetAllAsync())
+            .Where(x => sortBy.Manufacturer is null || x.Manufacturer == sortBy.Manufacturer)
+            .Where(x => sortBy.Model is null || x.Model == sortBy.Model)
+            .Where(x => sortBy.Cores <= 0 || x.Cores == sortBy.Cores)
+            .Where(x => sortBy.Socket is null || x.Socket == sortBy.Socket)
             .Select(x => x.AsDto())
             .ToList();
 
@@ -56,6 +48,11 @@ internal sealed class ProcessorService : IProcessorService
     public async Task UpdateAsync(Guid id, ProcessorDto dto)
     {
         var processor = await _processorRepository.GetAsync(id);
+        
+        if (processor is null)
+        {
+            throw new ProcessorNotFoundException(id);
+        }
 
         if (dto.Manufacturer is not null)
         {
@@ -93,6 +90,12 @@ internal sealed class ProcessorService : IProcessorService
     public async Task UpdatePriceAsync(Guid id, double price)
     {
         var processor = await _processorRepository.GetAsync(id);
+        
+        if (processor is null)
+        {
+            throw new ProcessorNotFoundException(id);
+        }
+        
         processor.EditPrice(price);
 
         await _processorRepository.UpdateAsync(processor);
@@ -101,6 +104,11 @@ internal sealed class ProcessorService : IProcessorService
     public async Task DeleteAsync(Guid id)
     {
         var processor = await _processorRepository.GetAsync(id);
+
+        if (processor is null)
+        {
+            throw new ProcessorNotFoundException(id);
+        }
 
         await _processorRepository.DeleteAsync(processor);
     }
