@@ -30,7 +30,7 @@ internal sealed class ProcessorService : IProcessorService
         => (await _processorRepository.GetAllAsync())
             .Where(x => sortBy.Manufacturer is null || x.Manufacturer == sortBy.Manufacturer)
             .Where(x => sortBy.Model is null || x.Model == sortBy.Model)
-            .Where(x => sortBy.Cores <= 0 || x.Cores == sortBy.Cores)
+            .Where(x => sortBy.Cores <= default(int) || x.Cores == sortBy.Cores)
             .Where(x => sortBy.Socket is null || x.Socket == sortBy.Socket)
             .Select(x => x.AsDto())
             .ToList();
