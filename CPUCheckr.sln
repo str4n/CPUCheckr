@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPUCheckr.Api", "CPUCheckr.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPUCheckr.Core", "CPUCheckr.Core\CPUCheckr.Core.csproj", "{77B3E16A-8F58-42E0-A89E-1E36101B5E8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPUCheckr.Tests", "CPUCheckr.Tests\CPUCheckr.Tests.csproj", "{084E39C4-67CE-4AB7-9D59-33749C4D9DA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPUCheckr.Tests.Unit", "CPUCheckr.Tests.Unit\CPUCheckr.Tests.Unit.csproj", "{084E39C4-67CE-4AB7-9D59-33749C4D9DA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

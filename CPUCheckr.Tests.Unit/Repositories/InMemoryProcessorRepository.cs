@@ -5,7 +5,7 @@ namespace CPUCheckr.Tests.Repositories;
 
 internal class InMemoryProcessorRepository : IProcessorRepository
 {
-    private static readonly List<Processor> ProcessorRepository = new()
+    private readonly List<Processor> _processorRepository = new()
     {
         Processor.Create(Guid.Parse("00000000-0000-0000-0000-000000000001"), "intel", "i7-10700", 8, "4.8GHz", "Socket 1200", 1200),
         Processor.Create(Guid.Parse("00000000-0000-0000-0000-000000000002"), "intel", "i9-11900k", 8, "5.3GHz", "Socket 1200", 1700),
@@ -14,14 +14,14 @@ internal class InMemoryProcessorRepository : IProcessorRepository
     };
 
     public Task<Processor> GetAsync(Guid id)
-        => Task.FromResult(ProcessorRepository.SingleOrDefault(x => x.Id == id))!;
+        => Task.FromResult(_processorRepository.SingleOrDefault(x => x.Id == id))!;
 
     public  Task<ICollection<Processor>> GetAllAsync()
-        => Task.FromResult<ICollection<Processor>>(ProcessorRepository);
+        => Task.FromResult<ICollection<Processor>>(_processorRepository);
 
     public Task AddAsync(Processor processor)
     {
-        ProcessorRepository.Add(processor);
+        _processorRepository.Add(processor);
 
         return Task.CompletedTask;
     }
@@ -33,7 +33,7 @@ internal class InMemoryProcessorRepository : IProcessorRepository
 
     public Task DeleteAsync(Processor processor)
     {
-        ProcessorRepository.Remove(processor);
+        _processorRepository.Remove(processor);
 
         return Task.CompletedTask;
     }
