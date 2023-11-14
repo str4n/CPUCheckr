@@ -19,6 +19,12 @@ cd CPUCheckr.Api
 dotnet run
 ~~~
 
+# Can I start solution without Docker?
+
+Yes, you can run app using any other MariaDb provider like [xampp](https://www.apachefriends.org/pl/index.html).
+
+Just edit connection string on **CPUCheckr.Api/appsettings.json** to a proper one. Then run solution as above.
+
 # What is the API port?
 
 API will run on **https://localhost:7286** and **http://localhost:5239**.
