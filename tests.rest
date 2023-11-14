@@ -6,30 +6,19 @@ GET {{url}}/home
 ###
 
 GET {{url}}/processor
-Content-type: application/json
-
-{
-}
 
 ###
 
 GET {{url}}/processor
-Content-type: application/json
-
-{
-    "manufacturer": "intel",
-    "cores": 8
-}
+    ?manufacturer=intel
+    &cores=8
 
 ###
 
 GET {{url}}/processor
-Content-type: application/json
+    ?manufacturer=amd
+    &socket=Socket%20AM5
 
-{
-    "manufacturer": "amd",
-    "socket": "Socket AM5"
-}
 
 ###
 

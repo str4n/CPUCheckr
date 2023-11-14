@@ -30,7 +30,7 @@ public class ProcessorServiceTests
     [InlineData("amd", default(int), "Socket AM5", 1)]
     public async void given_valid_sort_dto_returns_collection_of_all_processors(string manufacturer, int cores, string socket, int expectedCount)
     {
-        var sortBy = new SortByDto(manufacturer, default, cores, socket);
+        var sortBy = new QueryDto(manufacturer, default, cores, socket);
         
         var processors = await _processorService.GetAllAsync(sortBy);
 

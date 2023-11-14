@@ -22,8 +22,8 @@ public sealed class ProcessorController : BaseController
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<ICollection<ProcessorDto>>> GetAll([FromBody] SortByDto sortBy)
-        => OkOrNotFound(await _processorService.GetAllAsync(sortBy));
+    public async Task<ActionResult<ICollection<ProcessorDto>>> GetAll([FromQuery] QueryDto query)
+        => OkOrNotFound(await _processorService.GetAllAsync(query));
 
     [HttpPost("create")]
     [ProducesResponseType(StatusCodes.Status201Created)]

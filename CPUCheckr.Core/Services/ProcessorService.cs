@@ -26,12 +26,12 @@ internal sealed class ProcessorService : IProcessorService
         return processor.AsDto();
     }
 
-    public async Task<ICollection<ProcessorDto>> GetAllAsync(SortByDto sortBy)
+    public async Task<ICollection<ProcessorDto>> GetAllAsync(QueryDto query)
         => (await _processorRepository.GetAllAsync())
-            .Where(x => sortBy.Manufacturer is null || x.Manufacturer == sortBy.Manufacturer)
-            .Where(x => sortBy.Model is null || x.Model == sortBy.Model)
-            .Where(x => sortBy.Cores <= default(int) || x.Cores == sortBy.Cores)
-            .Where(x => sortBy.Socket is null || x.Socket == sortBy.Socket)
+            .Where(x => query.Manufacturer is null || string.Equals(x.Manufacturer.Value, query.Manufacturer, StringComparison.InvariantCultureIgnoreCase))
+            .Where(x => query.Model is null || string.Equals(x.Model.Value, query.Model, StringComparison.InvariantCultureIgnoreCase))
+            .Where(x => query.Cores <= default(int) || x.Cores == query.Cores)
+            .Where(x => query.Socket is null || string.Equals(x.Socket.Value, query.Socket, StringComparison.InvariantCultureIgnoreCase))
             .Select(x => x.AsDto())
             .ToList();
 
