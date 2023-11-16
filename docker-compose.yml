@@ -1,5 +1,16 @@
 version: '3'
 services:
+  mariadb2:
+    image: mariadb
+    container_name: CpuDb-Test
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: CpuDb-Test
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"
+      
   mariadb:
     image: mariadb
     container_name: CpuDb
@@ -10,3 +21,5 @@ services:
       MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
+
+    

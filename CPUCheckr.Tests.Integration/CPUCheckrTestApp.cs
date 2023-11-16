@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace CPUCheckr.Tests.Integration;
 
@@ -11,6 +12,7 @@ internal sealed class CPUCheckrTestApp : WebApplicationFactory<Program>
     {
         Client = WithWebHostBuilder(builder =>
         {
+            builder.UseEnvironment("Test");
         }).CreateClient();
     }
     
