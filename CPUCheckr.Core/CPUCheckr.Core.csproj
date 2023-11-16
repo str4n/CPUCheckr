@@ -17,6 +17,7 @@
     
     <ItemGroup>
         <InternalsVisibleTo Include="CPUCheckr.Tests.Unit" />
+        <InternalsVisibleTo Include="CPUCheckr.Tests.Integration" />
     </ItemGroup>
 
 </Project>
