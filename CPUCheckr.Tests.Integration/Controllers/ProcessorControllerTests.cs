@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http.Json;
 using CPUCheckr.Core.Domain.Entities;
 using CPUCheckr.Core.DTO;
 using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace CPUCheckr.Tests.Integration.Controllers;
@@ -17,10 +17,6 @@ public class ProcessorControllerTests : ControllerTests, IDisposable
     public ProcessorControllerTests(OptionsProvider optionsProvider) : base(optionsProvider)
     {
         _testDatabase = new TestDatabase();
-        _testDatabase.DbContext.Processors.Add(
-            Processor.Create(Guid.Parse(Id), "intel", "i7-9700", 8, "4.8GHz",
-            "Socket 1200", 1200));
-        _testDatabase.DbContext.SaveChanges();
     }
     
     [Fact]
@@ -38,6 +34,9 @@ public class ProcessorControllerTests : ControllerTests, IDisposable
     public async Task get_processor_by_id_should_return_200_status_code_and_processor()
     {
         var id = Guid.Parse(Id);
+
+        await AddSampleProcessorToDatabase();
+        
         var response = await Client.GetAsync($"{Path}/{id}");
 
         var processor = await response.Content.ReadFromJsonAsync<ProcessorDto>();
@@ -56,6 +55,31 @@ public class ProcessorControllerTests : ControllerTests, IDisposable
 
         response.StatusCode.Should().Be(HttpStatusCode.Created);
         response.Headers.Location.Should().NotBeNull();
+    }
+
+    [Fact]
+    public async Task update_processor_price_should_return_202_status_code()
+    {
+        var id = Guid.Parse(Id);
+        var dto = new PriceDto(999);
+
+        //var response = await Client.PatchAsJsonAsync($"{Path}/{id}", dto);
+
+        //response.StatusCode.Should().Be(HttpStatusCode.Accepted);
+
+        // updatedProcessor = await _testDatabase.DbContext.Processors.SingleOrDefaultAsync(x => x.Id == id);
+        
+        //updatedProcessor?.Price.Should().Be(dto.Price);
+    }
+
+    private async Task AddSampleProcessorToDatabase()
+    {
+        var id = Guid.Parse(Id);
+        
+        await _testDatabase.DbContext.Processors.AddAsync(
+            Processor.Create(id, "intel", "i7-10700", 8, "4.8GHz",
+                "Socket 1200", 1200));
+        await _testDatabase.DbContext.SaveChangesAsync();
     }
 
     public void Dispose()

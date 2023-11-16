@@ -27,5 +27,6 @@
     <ItemGroup>
       <ProjectReference Include="..\CPUCheckr.Api\CPUCheckr.Api.csproj" />
     </ItemGroup>
+    
 
 </Project>
