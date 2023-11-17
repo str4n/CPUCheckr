@@ -15,7 +15,11 @@ docker-compose up -d
 It will start the required infrastructure using Docker in the background. Then you can start actual application using your IDE or CLI:
 
 ~~~
-cd CPUCheckr.Api
+cd CPUCheckr.Core
+dotnet ef migrations add Init --startup-project ..\CPUCheckr.Api -o .\DAL\Migrations
+dotnet ef database update 
+
+cd ..\CPUCheckr.Api
 dotnet run
 ~~~
 
