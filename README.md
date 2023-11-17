@@ -1,6 +1,6 @@
 # What is CPUCheckr?
 
-CPUCheckr is simple **two layer CRUD API** written in [.NET6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0). Using this app you can find out the specifications of a particular processor.
+CPUCheckr is simple **two layer CRUD API** written in [.NET7](https://dotnet.microsoft.com/en-us/download/dotnet/7.0). Using this app you can find out the specifications of a particular processor.
 
 The database is being used is [MariaDb](https://mariadb.org/) and [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/) as ORM.
 
@@ -29,6 +29,6 @@ Just edit connection string on **CPUCheckr.Api/appsettings.json** to a proper on
 
 API will run on **https://localhost:7286** and **http://localhost:5239**.
 
-# What request can be sent to the API?
+# What requests can be sent to the API?
 
 You can find list of all API endpoints and HTTP requests on https://localhost:7286/swagger/index.html.
