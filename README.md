@@ -36,3 +36,7 @@ API will run on **https://localhost:7286** and **http://localhost:5239**.
 # What requests can be sent to the API?
 
 You can find list of all API endpoints and HTTP requests on https://localhost:7286/swagger/index.html.
+
+# How can i send requests?
+
+You can use any API tester like [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). Written tests are saved in tests.rest file
